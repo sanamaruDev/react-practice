@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import { Attendance } from "./components/Attendance";
 import { Leaving } from "./components/Leaving";
+import { WorkingTimeList } from "./components/WorkingTimeList";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -20,6 +21,7 @@ root.render(
         <Route path="/" element={<App />} />
         <Route path="attendance" element={<Attendance />} />
         <Route path="leaving" element={<Leaving />} />
+        <Route path="workingtimelist" element={<WorkingTimeList />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

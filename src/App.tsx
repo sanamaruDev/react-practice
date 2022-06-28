@@ -7,8 +7,12 @@ function App() {
     <div className="App">
         <div>
           <Link to="/attendance">出勤時間登録</Link>
+          <br/>
           <Link to="/leaving">退勤時間登録</Link>
-        </div>
+          <br/>
+          <Link to="/workingtimelist">一覧表示</Link>
+          <br/>
+      </div>
     </div>
   );
 }
