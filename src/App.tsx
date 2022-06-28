@@ -1,11 +1,13 @@
+import { Link } from "react-router-dom";
+
 import './App.css';
 
 function App() {
   return (
     <div className="App">
         <div>
-          <button id="updAttendance">出勤時間登録</button>
-          <button id="updLeaving">退勤時間登録</button>
+          <Link to="/attendance">出勤時間登録</Link>
+          <Link to="/leaving">退勤時間登録</Link>
         </div>
     </div>
   );
