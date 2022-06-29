@@ -7,9 +7,9 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import { Attendance } from "./components/Attendance";
-import { Leaving } from "./components/Leaving";
-import { WorkingTimeList } from "./components/WorkingTimeList";
+import { Attendance } from "./pages/Attendance";
+import { Leaving } from "./pages/Leaving";
+import { WorkingTimeList } from "./pages/WorkingTimeList";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
