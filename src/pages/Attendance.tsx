@@ -20,8 +20,8 @@ export const Attendance = () => {
     }
 
     // selectBox
-    // const aryHour = [08,09,10,11,12,13,14,15];
-    // const aryTime = [00,15,30,45];
+    const aryHour = ["08","09","10","11","12","13","14","15"];
+    const aryTime = ["00","15","30","45"];
 
     const regist = () => {
         axios.post(postUrl, {
@@ -44,21 +44,15 @@ export const Attendance = () => {
             </Box>
             <Box display="flex" justifyContent="center" margin="8">
                 <Select placeholder='select hour' onChange={(e) => handleChangeHour(e)}>
-                    <option value='08'>08</option>
-                    <option value='09'>09</option>
-                    <option value='10'>10</option>
-                    <option value='11'>11</option>
-                    <option value='12'>12</option>
-                    <option value='13'>13</option>
-                    <option value='14'>14</option>
-                    <option value='15'>15</option>
+                    {
+                        aryHour.map(output => <option value={output}>{output}</option>)
+                    }
                 </Select>
                 <Text fontSize="3xl">：</Text>
                 <Select placeholder='select time' onChange={(e) => handleChangeTime(e)}>          
-                    <option value='00'>00</option>
-                    <option value='15'>15</option>
-                    <option value='30'>30</option>
-                    <option value='45'>45</option>
+                    {
+                        aryTime.map(output => <option value={output}>{output}</option>)
+                    }
                 </Select>
             </Box>
             <Box display="flex" justifyContent="center" margin="8">
