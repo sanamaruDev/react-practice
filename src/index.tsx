@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import { App } from './App';
 import {
   BrowserRouter,
   Routes,
@@ -10,20 +10,24 @@ import {
 import { Attendance } from "./pages/Attendance";
 import { Leaving } from "./pages/Leaving";
 import { WorkingTimeList } from "./pages/WorkingTimeList";
+import { ChakraProvider } from "@chakra-ui/react";
+import { theme } from "./theme/theme";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="attendance" element={<Attendance />} />
-        <Route path="leaving" element={<Leaving />} />
-        <Route path="workingtimelist" element={<WorkingTimeList />} />
-      </Routes>
-    </BrowserRouter>
+    <ChakraProvider theme={theme}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="attendance" element={<Attendance />} />
+          <Route path="leaving" element={<Leaving />} />
+          <Route path="workingtimelist" element={<WorkingTimeList />} />
+        </Routes>
+      </BrowserRouter>
+    </ChakraProvider>
   </React.StrictMode>
 );
 
