@@ -1,9 +1,13 @@
 import { Box, Text, Select, Button } from "@chakra-ui/react"
 import React from "react";
 import axios from "axios";
+import { formatDate } from "../utils/util";
+import "../setting";
+
+const BASE_URL = process.env.REACT_APP_BASE_URL
 
 const today = new Date();
-const postUrl = "http://xxx";
+const postUrl = BASE_URL + "/attendance/regist";
 
 export const Attendance = () => {
 
@@ -25,21 +29,23 @@ export const Attendance = () => {
 
     const regist = () => {
         axios.post(postUrl, {
-            hour: hour,
-            time: time
+            "user_name":"testuser",
+            "working_date":formatDate(today, "yyyyMMdd"),
+            "attendance_time":hour + time,
+            "leaving_time":""
         })
         .then((response) => {
-            console.log(response);
+            alert(response);
         })
         .catch((response) => {
-            console.log(response);
+            alert(response);
         })
     }
 
     return (
         <div>
             <Box display="flex" justifyContent="center" margin="8">
-                <Text fontSize='3xl' fontFamily="Meiryo" marginInline="2">{today.getFullYear() + "/" + today.getMonth() + "/" + today.getDate()}</Text>
+                <Text fontSize='3xl' fontFamily="Meiryo" marginInline="2">{formatDate(today, "yyyy/MM/dd")}</Text>
                 <Text fontSize='3xl' fontFamily="Meiryo" marginInline="2">出勤時間を設定</Text>
             </Box>
             <Box display="flex" justifyContent="center" margin="8">
