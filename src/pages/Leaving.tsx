@@ -1,29 +1,67 @@
-import { Select } from "@chakra-ui/react"
+import { Box, Text, Select, Button } from "@chakra-ui/react"
+import React from "react";
+import axios from "axios";
+import { formatDate } from "../utils/util";
+import "../setting";
+import { request } from "../resource/Request";
 
 const today = new Date();
 
 export const Leaving = () => {
+
+    // userState
+    const [hour, setHour] = React.useState("");
+    const [time, setTime] = React.useState("");
+    
+    const handleChangeHour = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setHour(e.target.value)
+    }
+
+    const handleChangeTime = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setTime(e.target.value)
+    }
+
+    // selectBox
+    const aryHour = ["12","13","14","15","16","17","18","19","20","21","22","23","24","25","26"];
+    const aryTime = ["00","15","30","45"];
+    
+    const regist = () => {
+        axios.post(request.registAttendance, {
+            "user_name":"testuser",
+            "working_date":formatDate(today, "yyyyMMdd"),
+            "attendance_time":"",
+            "leaving_time":hour + time
+        })
+        .then((response) => {
+            alert(response);
+        })
+        .catch((response) => {
+            alert(response);
+        })
+    }
+
     return (
         <div>
-            <h1>{today.getFullYear() + "/" + today.getMonth() + "/" + today.getDate()}</h1>
-            <h1>退勤時間を設定</h1>
-            <Select placeholder='select hour'>          
-                <option value='08'>08</option>
-                <option value='09'>09</option>
-                <option value='10'>10</option>
-                <option value='11'>11</option>
-                <option value='12'>12</option>
-                <option value='13'>13</option>
-                <option value='14'>14</option>
-                <option value='15'>15</option>
-            </Select>
-            <Select placeholder='select time'>          
-                <option value='00'>00</option>
-                <option value='15'>15</option>
-                <option value='30'>30</option>
-                <option value='45'>45</option>
-            </Select>
-            <button>退勤時間登録</button>
+            <Box display="flex" justifyContent="center" margin="8">
+                <Text fontSize='3xl' fontFamily="Meiryo" marginInline="2">{formatDate(today, "yyyy/MM/dd")}</Text>
+                <Text fontSize='3xl' fontFamily="Meiryo" marginInline="2">退勤時間を設定</Text>
+            </Box>
+            <Box display="flex" justifyContent="center" margin="8">
+                <Select placeholder='select hour' onChange={(e) => handleChangeHour(e)}>
+                    {
+                        aryHour.map(output => <option value={output}>{output}</option>)
+                    }
+                </Select>
+                <Text fontSize="3xl">：</Text>
+                <Select placeholder='select time' onChange={(e) => handleChangeTime(e)}>          
+                    {
+                        aryTime.map(output => <option value={output}>{output}</option>)
+                    }
+                </Select>
+            </Box>
+            <Box display="flex" justifyContent="center" margin="8">
+                <Button onClick={regist}>退勤時間登録</Button>
+            </Box>
         </div>
     );
 };

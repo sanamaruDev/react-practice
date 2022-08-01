@@ -3,11 +3,9 @@ import React from "react";
 import axios from "axios";
 import { formatDate } from "../utils/util";
 import "../setting";
-
-const BASE_URL = process.env.REACT_APP_BASE_URL
+import { request } from "../resource/Request";
 
 const today = new Date();
-const postUrl = BASE_URL + "/attendance/regist";
 
 export const Attendance = () => {
 
@@ -28,7 +26,7 @@ export const Attendance = () => {
     const aryTime = ["00","15","30","45"];
 
     const regist = () => {
-        axios.post(postUrl, {
+        axios.post(request.registLeaving, {
             "user_name":"testuser",
             "working_date":formatDate(today, "yyyyMMdd"),
             "attendance_time":hour + time,
